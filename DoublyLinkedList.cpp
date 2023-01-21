@@ -8,14 +8,12 @@ class node{
 	node *next;
 	node *prev;
 	public:
-		friend class DLL;
-		
+		friend class DLL;		
 		node()
 		{
 			next = 0;
 			prev = 0;
-		}
-		
+		}		
 		node(int val, node* ptr=0, node* ctr=0)
 		{
 			data = val;
@@ -24,11 +22,9 @@ class node{
 		}
 };
 
-class DLL{
-	
+class DLL{	
 	node* header;
 	node *trailer;
-	
 	public: 
 	DLL()
 	{
@@ -61,13 +57,11 @@ class DLL{
 	{
 		return(header->next==trailer);
 	}
-	
 	//(i) insert element at beginning
 	void addToHeader(int val)
 	{
 		add(header -> next, val);
 	}
-	
 	// (ii) insert an element at ith position
 	void insertAt(int val, int i)
 	{
@@ -82,21 +76,17 @@ class DLL{
 		
 		add(ptr, val);
 	}
-	
 	// (iii) insert an element at end
 	void addToTrailer(int val)
 	{
 		add(trailer, val);
 	}
-	
 	// (iv) remove an element from beginning
 	void removeAtHeader()
 	{	
 		if(!isempty())
 			remove(header->next);
 	}
-	
-	
 	//(v) remove an element at ith position
 	void removeAt(int i)
 	{
@@ -111,7 +101,6 @@ class DLL{
 		
 		remove(ptr);
 	}
-
 	// (vi) remove an element from the end
 	void removeAtTrailer()
 	{	
@@ -122,26 +111,18 @@ class DLL{
 	// (vii) search an element
 	
 	node* search(int val)
-	{
-		node* ptr = header -> next;
-		
-		while(!isempty() && ptr!=trailer)
-		{
-			if(ptr->data==val)
-			{
+	{	node* ptr = header -> next;
+		while(!isempty() && ptr!=trailer){
+			if(ptr->data==val){
 				return ptr;
 			}
-			
 			ptr=ptr->next;
 		}
 		return 0;
 	}
-	
 	//(viii) concatenate 2 DLLs
 	void concatenate(DLL &l)
-	{
-		if(!isempty())
-		{
+	{	if(!isempty()){
 			node* ptr = trailer-> prev;
 			ptr->next = l.header->next;
 			l.header->next->prev = ptr;
@@ -150,31 +131,24 @@ class DLL{
 			l.header->next=l.trailer;
 			l.trailer->prev=l.header;
 		}
-		else
-		{
+		else{
 			header=l.header;
 			trailer=l.trailer;
 			l.header->next=l.trailer;
 			l.trailer->prev = l.header;
-		}
-		
+		}	
 	} 	
-	int back()
-	{
+	int back(){
 		return (trailer->prev->data);
 	}
-	int front()
-	{
+	int front(){
 		return (header->next->data);
 	}
-	
 	// display
-	void display()
-	{
+	void display(){
 		node *ptr = header->next;
 		cout<<"The List is: ";
-		while(ptr != trailer)
-		{
+		while(ptr != trailer){
 			cout<<ptr->data<<" ";
 			ptr=ptr->next;
 		}
@@ -187,11 +161,8 @@ int main(){
 	int ch,el,i;
 	node* x;
 	char ans = 'y';
-	do
-	
-	{
-		cout<<endl<<"******* DOUBLY LINKED LIST ********"<<endl;
-		
+	do{
+		cout<<endl<<"******* DOUBLY LINKED LIST ********"<<endl;	
 		cout<<endl<<"-----------------------------------";		
 		cout<<endl<<"            OPERATIONS             ";
 		cout<<endl<<"-----------------------------------";	
@@ -208,9 +179,7 @@ int main(){
 		cout<<endl<<endl<<"Enter your choice: ";
 		cin>>ch;
 		
-		switch(ch)
-		{
-			
+		switch(ch){
 			case 1: cout<<endl<<"Enter the element to be inserted: ";
 					cin>>el;
 					l.addToHeader(el);
@@ -250,11 +219,9 @@ int main(){
 					break;
 			case 8: cout<<endl<<"Enter number of elements in new list: ";
 					cin>>i;
-					if(i)
-					{
+					if(i){
 						cout<<"Enter elements: ";
-						for(int j=0;j<i;j++)
-						{
+						for(int j=0;j<i;j++){
 							cin>>el;
 							l1.addToHeader(el);
 						}
@@ -266,16 +233,9 @@ int main(){
 			case 9: exit(0); break;
 			default: cout<<endl<<"Invalid choice!!"<<endl;
 				break;
-			
 		}
 		cout << "\nWant to continue?(y/n) ";
 		cin  >> ans;
 	}while(ans=='y' or ans == 'Y');
-	
-	return 0;
-	
+	return 0;	
 }
-
-
-
-
